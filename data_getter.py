@@ -37,7 +37,7 @@ def retrieve_steam_data(start, end):
 def retrieve_steam_reviews(id_lst):
     data_from_steam_ = []
     for num, appid in enumerate(id_lst):
-        data_from_steam_.append(get_reviews(appid))
+        data_from_steam_.append({appid: get_reviews(appid)})
         if num % 1000 == 0 and num >0:
             t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
             save_data(data_from_steam_, f"upto_{num}_reviews.json")
