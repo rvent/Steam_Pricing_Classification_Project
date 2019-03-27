@@ -27,7 +27,6 @@ def retrieve_steam_data(start, end):
             t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
             save_data(data_from_steam_, f"{num}_data_{start}.json")
             print(num, "Saved!")
-            data_from_steam_ = []
             time.sleep(t)
         elif num % 100 == 0:
             t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
@@ -43,7 +42,6 @@ def retrieve_steam_reviews(id_lst):
             t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
             save_data(data_from_steam_, f"{num}_data_{start}.json")
             print(num, "Saved!")
-            data_from_steam_ = []
             time.sleep(t)
         elif num % 100 == 0:
             t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
