@@ -23,7 +23,7 @@ def retrieve_steam_data(start, end):
     for num, game in enumerate(games[start: end]):
         if game["appid"] >= 10:
             data_from_steam_.append(get_game_info(game["appid"]))
-        if num % 1000 == 0:
+        if num % 1000 == 0 and num >0:
             t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
             save_data(data_from_steam_, f"{num}_data_{start}.json")
             print(num, "Saved!")
