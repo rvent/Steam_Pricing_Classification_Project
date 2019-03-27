@@ -35,6 +35,34 @@ def retrieve_steam_data(start, end):
             time.sleep(t)
     return data_from_steam_ 
 
+def retrieve_steam_reviews(id_lst):
+    data_from_steam_ = []
+    for num, appid in enumerate(id_lst):
+        data_from_steam_.append(get_reviews(game["appid"]))
+        if num % 1000 == 0 and num >0:
+            t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
+            save_data(data_from_steam_, f"{num}_data_{start}.json")
+            print(num, "Saved!")
+            data_from_steam_ = []
+            time.sleep(t)
+        elif num % 100 == 0:
+            t = np.random.choice([1,1.1,1.2,1.3,1.4,1.5])
+            print(num, t)
+            time.sleep(t)
+    return data_from_steam_ 
+
+def get_reviews(appid, start_offset=0, fil='updated', review_type='all'):
+    url = 'https://store.steampowered.com'
+    reviews = '/appreviews/'
+    p = {'day_range':'9223372036854775807', 
+         'start_offset':start_offset, 
+         'language':'english', 
+         'filter':fil, 
+         'review_type':review_type,
+         'purchase_type':'all'}
+    r = requests.get(url+reviews+str(appid)+'?json=1?', params=p).json()
+    return r
+
 def open_save_data(file_to_open):
         """takes in a filename to open
            return """
