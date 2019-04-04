@@ -67,5 +67,5 @@ def decision_tree(Xtrain, Xtest, ytrain, ytest, criterion="gini", max_depth=None
         dot_data = StringIO()
         export_graphviz(clf, out_file=dot_data, filled=True, rounded=True,special_characters=True)
         graph = pydotplus.graph_from_dot_data(dot_data.getvalue())  
-        Image(graph.create_png())
+        return clf, y_pred_train, y_pred_test, Image(graph.create_png())
     return clf, y_pred_train, y_pred_test
