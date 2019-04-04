@@ -19,6 +19,12 @@ warnings.filterwarnings('ignore')
 
 
 def plot_feature_importances(model, title, X_train):
+    """
+    takes a tree model as model
+    takes a plot title as title
+    takes the training features as X_train
+    plots a graph of the features of importance for the model
+    """
     n_features = X_train.shape[1]
     plt.figure(figsize=(8,8))
     plt.barh(range(n_features), model.feature_importances_, align='center') 
@@ -28,6 +34,14 @@ def plot_feature_importances(model, title, X_train):
     plt.title(title)
 
 def run_reports(model, X_train, y_true, y_pred, y_type="train", plot=False):
+    """
+    takes in classification model as model
+    takes the training features as X_train
+    takes the actual target values as y_true
+    takes the predicted target values as y_pred
+    takes an optional set type as y_type. y_type can be "train" for training set, "test" for testing set
+    takes optional flag plot, that plots a features_of_importance plot if set to True
+    """
     print(f"{y_type.title()} Report:")
     acc = accuracy_score(y_true, y_pred) * 100
     print(f"Our {y_type} accuracy is: {acc}")    
@@ -37,6 +51,14 @@ def run_reports(model, X_train, y_true, y_pred, y_type="train", plot=False):
         plot_feature_importances(model, y_type + "'s Feature of Importance", X_train)
     
 def decision_tree(Xtrain, Xtest, ytrain, ytest, criterion="gini", max_depth=None, viz=False):
+    """
+    takes the training features as Xtrain
+    takes the testing features as Xtest
+    takes the training targets as ytrain
+    takes the testing targets as ytest
+    takes optional parameters for the decision tree
+    returns the model, prediction on the training, and prediction on the testing
+    """
     clf = DecisionTreeClassifier(criterion=criterion, max_depth=max_depth)
     clf.fit(Xtrain, ytrain)
     y_pred_train = clf.predict(Xtrain)
